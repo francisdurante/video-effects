@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="video-effects-android" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>
+		VideoEffects
+	</name>
+	<js-module name="video-effects-android" src="www/videoEffects.js">
+        <clobbers target="cordova.plugins" />
+	</js-module>
+	<platform name="android">
+		<framework src="com.android.support.constraint:constraint-layout:1.1.3" />
+		<framework src="com.android.support:appcompat-v7:28.0.0" />
+		<framework src="com.writingminds:FFmpegAndroid:0.3.2" />
+		<config-file parent="/*" target="res/xml/config.xml">
+			<feature name="callPlugin"><param name="android-package" value="video.effects.android.videoeffects.VideoEffects" /></feature>
+		</config-file>
+			<config-file parent="/manifest" target="AndroidManifest.xml">
+				<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+				<uses-permission android:name="android.permission.CAMERA" />
+				<uses-permission android:name="android.permission.RECORD_AUDIO" />
+			</config-file>
+			<config-file parent="/manifest/application" target="AndroidManifest.xml">
+			  <activity android:label="@string/activity_name" android:launchMode="singleTop" android:name="video.effects.android.videoeffects.sample.MainActivity" android:theme="@style/Theme.AppCompat" android:windowSoftInputMode="adjustResize"/>
+			  <activity android:label="@string/activity_name" android:launchMode="singleTop" android:name="video.effects.android.videoeffects.sample.PortrateActivity" android:theme="@style/Theme.AppCompat" android:windowSoftInputMode="adjustResize"/>
+			  <activity android:label="@string/activity_name" android:launchMode="singleTop" android:name="video.effects.android.videoeffects.sample.SquareActivity" android:theme="@style/Theme.AppCompat" android:windowSoftInputMode="adjustResize"/>
+			  <activity android:label="@string/activity_name" android:launchMode="singleTop" android:name="video.effects.android.videoeffects.sample.LandscapeActivity" android:theme="@style/Theme.AppCompat" android:windowSoftInputMode="adjustResize"/>
+			  <activity android:label="@string/activity_name" android:launchMode="singleTop" android:name="video.effects.android.videoeffects.sample.BaseCameraActivity" android:theme="@style/Theme.AppCompat" android:windowSoftInputMode="adjustResize"/>
+			</config-file>
+			
+			<source-file src="src/android/FakeR.java" target-dir="src/video/effects/android/videoeffects" />
+			<source-file src="src/android/VideoEffects.java" target-dir="src/video/effects/android/videoeffects" />
+			<source-file src="src/android/sample/widget/Filters.java" target-dir="src/video/effects/android/videoeffects/sample/widget" />
+			<source-file src="src/android/sample/widget/GlBitmapOverlaySample.java" target-dir="src/video/effects/android/videoeffects/sample/widget" />
+			<source-file src="src/android/sample/widget/PortraitFrameLayout.java" target-dir="src/video/effects/android/videoeffects/sample/widget" />
+			<source-file src="src/android/sample/widget/SampleGLView.java" target-dir="src/video/effects/android/videoeffects/sample/widget" />
+			
+			<source-file src="src/android/sample/BaseCameraActivity.java" target-dir="src/video/effects/android/videoeffects/sample" />
+			<source-file src="src/android/sample/LandscapeActivity.java" target-dir="src/video/effects/android/videoeffects/sample" />
+			<source-file src="src/android/sample/MainActivity.java" target-dir="src/video/effects/android/videoeffects/sample" />
+			<source-file src="src/android/sample/PortrateActivity.java" target-dir="src/video/effects/android/videoeffects/sample" />
+			<source-file src="src/android/sample/SquareActivity.java" target-dir="src/video/effects/android/videoeffects/sample" />
+			
+			
+			
+			<source-file src="src/android/sample/res/values/strings.xml" target-dir="res/values" />
+			<source-file src="src/android/sample/res/values/colors.xml" target-dir="res/values" />
+			<source-file src="src/android/sample/res/values/styles.xml" target-dir="res/values" />
+			
+			
+			<source-file src="src/android/sample/res/drawable/ic_launcher_background.xml" target-dir="res/drawable" />
+			<source-file src="src/android/sample/res/drawable/ic_record.xml" target-dir="res/drawable" />
+			<source-file src="src/android/sample/res/drawable/ic_recording.xml" target-dir="res/drawable" />
+			<source-file src="src/android/sample/res/drawable/ic_flash.xml" target-dir="res/drawable" />
+			<source-file src="src/android/sample/res/drawable/m1w_logo.png" target-dir="res/drawable" />
+			
+			<source-file src="src/android/sample/res/drawable-nodpi/lookup_sample.png" target-dir="res/drawable-nodpi" />
+			<source-file src="src/android/sample/res/drawable-v24/ic_launcher_foreground.xml" target-dir="res/drawable-v24" />
+			
+			<source-file src="src/android/sample/res/layout/activity_landscape.xml" target-dir="res/layout" />
+			<source-file src="src/android/sample/res/layout/activity_main.xml" target-dir="res/layout" />
+			<source-file src="src/android/sample/res/layout/activity_portrate.xml" target-dir="res/layout" />
+			<source-file src="src/android/sample/res/layout/activity_square.xml" target-dir="res/layout" />
+			
+			<source-file src="src/android/sample/res/mipmap-anydpi-v26/ic_launcher.xml" target-dir="res/xml/mipmap-anydpi-v26" />
+			<source-file src="src/android/sample/res/mipmap-hdpi/ic_launcher.png" target-dir="res/xml/mipmap-hdpi" />
+			<source-file src="src/android/sample/res/mipmap-hdpi/ic_launcher_round.png" target-dir="res/mipmap-hdpi" />
+			
+			<source-file src="src/android/sample/res/mipmap-mdpi/ic_launcher.png" target-dir="res/mipmap-mdpi" />
+			<source-file src="src/android/sample/res/mipmap-mdpi/ic_launcher_round.png" target-dir="res/mipmap-mdpi" />
+			
+			<source-file src="src/android/sample/res/mipmap-xhdpi/ic_launcher.png" target-dir="res/mipmap-xhdpi" />
+			<source-file src="src/android/sample/res/mipmap-xhdpi/ic_launcher_round.png" target-dir="res/mipmap-xhdpi" />
+			
+			
+			<source-file src="src/android/sample/res/mipmap-xxhdpi/ic_launcher.png" target-dir="res/mipmap-xxhdpi" />
+			<source-file src="src/android/sample/res/mipmap-xxhdpi/ic_launcher_round.png" target-dir="res/mipmap-xxhdpi" />
+			
+			
+			<source-file src="src/android/sample/res/mipmap-xxxhdpi/ic_launcher.png" target-dir="res/mipmap-xxxhdpi" />
+			<source-file src="src/android/sample/res/mipmap-xxxhdpi/ic_launcher_round.png" target-dir="res/mipmap-xxxhdpi" />
+			
+			<source-file src="src/android/sample/res/raw/test_only.wav" target-dir="res/raw" />
+			
+			<source-file src="src/android/camerarecorder/capture/EGLBase.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/capture" />
+			<source-file src="src/android/camerarecorder/capture/EglSurface.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/capture" />
+			<source-file src="src/android/camerarecorder/capture/EncodeRenderHandler.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/capture" />
+			<source-file src="src/android/camerarecorder/capture/MediaAudioEncoder.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/capture" />
+			<source-file src="src/android/camerarecorder/capture/MediaEncoder.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/capture" />
+			<source-file src="src/android/camerarecorder/capture/MediaMuxerCaptureWrapper.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/capture" />
+			<source-file src="src/android/camerarecorder/capture/MediaVideoEncoder.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/capture" />	
+			
+			
+			<source-file src="src/android/camerarecorder/egl/DefaultConfigChooser.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl" />
+			<source-file src="src/android/camerarecorder/egl/DefaultContextFactory.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl" />
+			<source-file src="src/android/camerarecorder/egl/EglUtil.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl" />
+			<source-file src="src/android/camerarecorder/egl/GLES20ConfigChooser.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl" />
+			<source-file src="src/android/camerarecorder/egl/GLES20ContextFactory.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl" />
+			<source-file src="src/android/camerarecorder/egl/GLES20FramebufferObject.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl" />
+			<source-file src="src/android/camerarecorder/egl/GlFrameBufferObjectRenderer.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl" />
+			<source-file src="src/android/camerarecorder/egl/GlPreview.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl" />
+			<source-file src="src/android/camerarecorder/egl/GlPreviewRenderer.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl" />
+			<source-file src="src/android/camerarecorder/egl/GlSurfaceTexture.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl" />
+			
+			<source-file src="src/android/camerarecorder/egl/filter/GlBilateralFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlBoxBlurFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlBulgeDistortionFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlCGAColorspaceFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlFilterGroup.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlGaussianBlurFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlGrayScaleFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlHazeFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlInvertFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlLookUpTableFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlMonochromeFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlOverlayFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlSepiaFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlSharpenFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlSphereRefractionFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlThreex3TextureSamplingFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlToneCurveFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlToneFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlVignetteFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			<source-file src="src/android/camerarecorder/egl/filter/GlWeakPixelInclusionFilter.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/egl/filter" />
+			
+			<source-file src="src/android/camerarecorder/CameraHandler.java" target-dir="src/video/effects/android/videoeffects/camerarecorder" />
+			<source-file src="src/android/camerarecorder/CameraRecorder.java" target-dir="src/video/effects/android/videoeffects/camerarecorder" />
+			<source-file src="src/android/camerarecorder/CameraRecorderBuilder.java" target-dir="src/video/effects/android/videoeffects/camerarecorder" />
+			<source-file src="src/android/camerarecorder/CameraRecordListener.java" target-dir="src/video/effects/android/videoeffects/camerarecorder" />
+			<source-file src="src/android/camerarecorder/CameraThread.java" target-dir="src/video/effects/android/videoeffects/camerarecorder" />
+			<source-file src="src/android/camerarecorder/LensFacing.java" target-dir="src/video/effects/android/videoeffects/camerarecorder" />
+			<source-file src="src/android/camerarecorder/Resolution.java" target-dir="src/video/effects/android/videoeffects/camerarecorder" />	
+	</platform>
+</plugin>

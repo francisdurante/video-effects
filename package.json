@@ -1,0 +1,14 @@
+{
+  "name": "video-effects-android",
+  "version": "0.0.1",
+  "description": "",
+  "cordova": {
+    "id": "video-effects-android",
+    "platforms": []
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "francis",
+  "license": "ISC"
+}
