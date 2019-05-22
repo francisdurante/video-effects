@@ -51,7 +51,7 @@
 			<source-file src="src/android/sample/res/drawable/ic_recording.xml" target-dir="res/drawable" />
 			<source-file src="src/android/sample/res/drawable/ic_flash.xml" target-dir="res/drawable" />
 			<source-file src="src/android/sample/res/drawable/m1w_logo.png" target-dir="res/drawable" />
-			<source-file src="src/android/sample/res/drawable/ic_switch_camera" target-dir="res/drawable" />
+			<source-file src="src/android/sample/res/drawable/ic_switch_camera.xml" target-dir="res/drawable" />
 			
 			<source-file src="src/android/sample/res/drawable-nodpi/lookup_sample.png" target-dir="res/drawable-nodpi" />
 			<source-file src="src/android/sample/res/drawable-v24/ic_launcher_foreground.xml" target-dir="res/drawable-v24" />
