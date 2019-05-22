@@ -18,21 +18,23 @@ public class MainActivity extends AppCompatActivity {
 		    fakeR = new FakeR(this);
 
 		    String musicPath = "";
-		    if(null != getIntent().getExtras().getString("MUSIC_PATH")){
-		      musicPath = getIntent().getExtras().getString("MUSIC_PATH");
-          PortrateActivity.startActivity(MainActivity.this,musicPath);
-        }else {
-          setContentView(fakeR.getId("layout", "activity_main"));
-          findViewById(fakeR.getId("id", "portrate")).setOnClickListener(v -> {
-          });
-          findViewById(fakeR.getId("id", "landscape")).setOnClickListener(v -> {
-            LandscapeActivity.startActivity(MainActivity.this);
-          });
-          findViewById(fakeR.getId("id", "square")).setOnClickListener(v -> {
-            SquareActivity.startActivity(MainActivity.this);
-          });
+
+		    if(checkPermission() && null != getIntent().getExtras().getString("MUSIC_PATH")) {
+          musicPath = getIntent().getExtras().getString("MUSIC_PATH");
+          PortrateActivity.startActivity(MainActivity.this, musicPath);
+          finish();
         }
-        finish();
+//        }else {
+//          setContentView(fakeR.getId("layout", "activity_main"));
+//          findViewById(fakeR.getId("id", "portrate")).setOnClickListener(v -> {
+//          });
+//          findViewById(fakeR.getId("id", "landscape")).setOnClickListener(v -> {
+//            LandscapeActivity.startActivity(MainActivity.this);
+//          });
+//          findViewById(fakeR.getId("id", "square")).setOnClickListener(v -> {
+//            SquareActivity.startActivity(MainActivity.this);
+//          });
+//        }
 
     }
 
