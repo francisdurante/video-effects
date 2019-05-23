@@ -14,13 +14,17 @@ import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -49,6 +53,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.IntBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -92,6 +97,7 @@ public class BaseCameraActivity extends AppCompatActivity {
     getSupportActionBar().hide();
     fakeR = new FakeR(this);
     initViewPager();
+    initialLoadResources();
     recordBtn = findViewById(fakeR.getId("id","btn_record"));
     recordBtn.setOnClickListener(v -> {
       mediaPlayer = MediaPlayer.create(this,Uri.parse(this.musicPath));
@@ -101,6 +107,7 @@ public class BaseCameraActivity extends AppCompatActivity {
         filepath = getVideoFilePath();
         outFile = myOneWorldMyStoryaVideosPath();
         cameraRecorder.start(filepath);
+        cameraRecorder.changeAutoFocus();
         recordBtn.setTag("Stop");
         recordBtn.setImageResource(fakeR.getId("drawable","ic_recording"));
         this.musicPath = musicPath;
@@ -208,7 +215,6 @@ public class BaseCameraActivity extends AppCompatActivity {
     }
   }
 
-
   private void setUpCameraView() {
     runOnUiThread(() -> {
       FrameLayout frameLayout = findViewById(fakeR.getId("id","wrap_view"));
@@ -222,7 +228,6 @@ public class BaseCameraActivity extends AppCompatActivity {
       frameLayout.addView(sampleGLView);
     });
   }
-
 
   private void setUpCamera() {
     setUpCameraView();
@@ -273,7 +278,6 @@ public class BaseCameraActivity extends AppCompatActivity {
   private void changeFilter(Filters filters) {
     cameraRecorder.setFilter(Filters.getFilterInstance(filters, getApplicationContext()));
   }
-
 
   private interface BitmapReadyCallbacks {
     void onBitmapReady(Bitmap bitmap);
@@ -334,7 +338,6 @@ public class BaseCameraActivity extends AppCompatActivity {
     }
   }
 
-
   public void exportMp4ToGallery(Context context, String filePath) {
     final ContentValues values = new ContentValues(4);
     values.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4");
@@ -345,11 +348,13 @@ public class BaseCameraActivity extends AppCompatActivity {
       Uri.parse("file://" + filePath)));
 
     VideoEffects.callbackContext.success(filepath);
+    finish();
   }
 
   public static String getVideoFilePath() {
     return getAndroidMoviesFolder().getAbsolutePath() + "/Mystorya-" + new SimpleDateFormat("yyyyyMMddHHmms").format(new Date()) + "cameraRecorder.mp4";
   }
+
   public static String myOneWorldMyStoryaVideosPath() {
     return getAndroidMoviesFolder().getAbsolutePath() + "/Mystorya-" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".mp4";
   }
@@ -373,7 +378,6 @@ public class BaseCameraActivity extends AppCompatActivity {
     }
   }
 
-
   private static void exportPngToGallery(Context context, String filePath) {
     Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
     File f = new File(filePath);
@@ -389,6 +393,7 @@ public class BaseCameraActivity extends AppCompatActivity {
   public static File getAndroidImageFolder() {
     return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
   }
+
   public boolean addMusic(String videoInput, String audioInput, String output, Context context) {
     String[] command = new String[]  {"-i", audioInput, "-i", videoInput, "-acodec", "copy", "-shortest",
       "-vcodec", "copy", output };
@@ -508,6 +513,7 @@ public class BaseCameraActivity extends AppCompatActivity {
       imageView1.getLayoutParams().width = 200;
       imageView1.setOnClickListener(v->{
         changeFilter((Filters)imageView1.getTag());
+        Toast.makeText(this,imageView1.getTag().toString(),Toast.LENGTH_SHORT).show();
       });
       imageView1.requestLayout();
       linearLayout.addView(imageView1);
@@ -518,5 +524,36 @@ public class BaseCameraActivity extends AppCompatActivity {
       linearLayout1.addView(horizontalScrollView);
     }
   }
+
+  public void exportInitialDrawableToLocalAndroid(int resource,String folderName,String fileNameOut){
+    InputStream in = getResources().openRawResource(resource);
+    File folder = new File(Environment.getExternalStorageDirectory() + "/Android/data/" + getPackageName() + "/" + folderName + "/");
+    if(!folder.exists()) {
+      folder.mkdirs();
+    }
+    if(!new File(folder,fileNameOut).exists()) {
+      try {
+        FileOutputStream out = new FileOutputStream(Environment.getExternalStorageDirectory() + "/Android/data/" + getPackageName() + "/" + folderName + "/" + fileNameOut);
+        byte[] buff = new byte[1024];
+        int read = 0;
+
+        try {
+          while ((read = in.read(buff)) > 0) {
+            out.write(buff, 0, read);
+          }
+        } finally {
+          in.close();
+          out.close();
+        }
+      } catch (Exception e) {
+        System.out.println(e.getMessage());
+      }
+    }
+  }
+
+  public void initialLoadResources(){
+    exportInitialDrawableToLocalAndroid(fakeR.getId(this,"raw","budots"),"sample_name","budots.mp3");
+  }
+
 
 }

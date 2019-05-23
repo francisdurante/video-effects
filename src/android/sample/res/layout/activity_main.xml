@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context="video.effects.android.videoeffects.sample.MainActivity">
 
+  <FrameLayout
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="56dp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+
     <Button
         android:id="@+id/portrate"
         android:layout_width="wrap_content"
@@ -13,7 +22,8 @@
         android:text="PORTRATE"
         app:layout_constraintBottom_toTopOf="@+id/landscape"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+      android:visibility="gone"/>
 
     <Button
         android:id="@+id/landscape"
@@ -23,7 +33,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+      android:visibility="gone" />
 
 
     <Button
@@ -33,7 +44,16 @@
         android:text="SQUARE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/landscape" />
+        app:layout_constraintTop_toBottomOf="@+id/landscape"
+        android:visibility="gone" />
 
-
+  <android.support.design.widget.BottomNavigationView
+    android:id="@+id/navigation"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:menu="@menu/nav_menu_item" />
 </android.support.constraint.ConstraintLayout>

@@ -10,6 +10,10 @@
 		<framework src="com.android.support.constraint:constraint-layout:1.1.3" />
 		<framework src="com.android.support:appcompat-v7:28.0.0" />
 		<framework src="com.writingminds:FFmpegAndroid:0.3.2" />
+		<framework src="com.github.esafirm.android-image-picker:imagepicker:1.13.1" />
+		<framework src="com.github.bumptech.glide:glide:4.5.0" />
+		<framework src="com.android.support:design:28.0.0" />
+		<framework src="src/android/plugin.gradle" custom="true" type="gradleReference"/>
 		<config-file parent="/*" target="res/xml/config.xml">
 			<feature name="callPlugin"><param name="android-package" value="video.effects.android.videoeffects.VideoEffects" /></feature>
 		</config-file>
@@ -19,7 +23,7 @@
 				<uses-permission android:name="android.permission.RECORD_AUDIO" />
 			</config-file>
 			<config-file parent="/manifest/application" target="AndroidManifest.xml">
-			  <activity android:label="@string/activity_name" android:launchMode="singleTop" android:name="video.effects.android.videoeffects.sample.MainActivity" android:theme="@style/Theme.AppCompat" android:windowSoftInputMode="adjustResize"/>
+			  <activity android:label="@string/activity_name" android:launchMode="singleTop" android:name="video.effects.android.videoeffects.sample.MainActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar" android:windowSoftInputMode="adjustResize"/>
 			  <activity android:label="@string/activity_name" android:launchMode="singleTop" android:name="video.effects.android.videoeffects.sample.PortrateActivity" android:theme="@style/Theme.AppCompat" android:windowSoftInputMode="adjustResize"/>
 			  <activity android:label="@string/activity_name" android:launchMode="singleTop" android:name="video.effects.android.videoeffects.sample.SquareActivity" android:theme="@style/Theme.AppCompat" android:windowSoftInputMode="adjustResize"/>
 			  <activity android:label="@string/activity_name" android:launchMode="singleTop" android:name="video.effects.android.videoeffects.sample.LandscapeActivity" android:theme="@style/Theme.AppCompat" android:windowSoftInputMode="adjustResize"/>
@@ -38,13 +42,15 @@
 			<source-file src="src/android/sample/MainActivity.java" target-dir="src/video/effects/android/videoeffects/sample" />
 			<source-file src="src/android/sample/PortrateActivity.java" target-dir="src/video/effects/android/videoeffects/sample" />
 			<source-file src="src/android/sample/SquareActivity.java" target-dir="src/video/effects/android/videoeffects/sample" />
-			
+			<source-file src="src/android/sample/SlideShowFragment.java" target-dir="src/video/effects/android/videoeffects/sample" />
+			<source-file src="src/android/sample/VideoFragment.java" target-dir="src/video/effects/android/videoeffects/sample" />
 			
 			
 			<source-file src="src/android/sample/res/values/strings.xml" target-dir="res/values" />
 			<source-file src="src/android/sample/res/values/colors.xml" target-dir="res/values" />
 			<source-file src="src/android/sample/res/values/styles.xml" target-dir="res/values" />
 			
+			<source-file src="src/android/sample/res/menu/nav_menu_item.xml" target-dir="res/menu" />
 			
 			<source-file src="src/android/sample/res/drawable/ic_launcher_background.xml" target-dir="res/drawable" />
 			<source-file src="src/android/sample/res/drawable/ic_record.xml" target-dir="res/drawable" />
@@ -52,6 +58,9 @@
 			<source-file src="src/android/sample/res/drawable/ic_flash.xml" target-dir="res/drawable" />
 			<source-file src="src/android/sample/res/drawable/m1w_logo.png" target-dir="res/drawable" />
 			<source-file src="src/android/sample/res/drawable/ic_switch_camera.xml" target-dir="res/drawable" />
+			<source-file src="src/android/sample/res/drawable/ic_videocam_filled_tool.xml" target-dir="res/drawable" />
+			<source-file src="src/android/sample/res/drawable/ic_photo_camera.xml" target-dir="res/drawable" />
+			
 			
 			<source-file src="src/android/sample/res/drawable-nodpi/lookup_sample.png" target-dir="res/drawable-nodpi" />
 			<source-file src="src/android/sample/res/drawable-v24/ic_launcher_foreground.xml" target-dir="res/drawable-v24" />
@@ -60,6 +69,8 @@
 			<source-file src="src/android/sample/res/layout/activity_main.xml" target-dir="res/layout" />
 			<source-file src="src/android/sample/res/layout/activity_portrate.xml" target-dir="res/layout" />
 			<source-file src="src/android/sample/res/layout/activity_square.xml" target-dir="res/layout" />
+			<source-file src="src/android/sample/res/layout/activity_slideshow.xml" target-dir="res/layout" />
+			<source-file src="src/android/sample/res/layout/activity_video.xml" target-dir="res/layout" />
 			
 			<source-file src="src/android/sample/res/mipmap-anydpi-v26/ic_launcher.xml" target-dir="res/xml/mipmap-anydpi-v26" />
 			<source-file src="src/android/sample/res/mipmap-hdpi/ic_launcher.png" target-dir="res/xml/mipmap-hdpi" />
@@ -80,6 +91,7 @@
 			<source-file src="src/android/sample/res/mipmap-xxxhdpi/ic_launcher_round.png" target-dir="res/mipmap-xxxhdpi" />
 			
 			<source-file src="src/android/sample/res/raw/test_only.wav" target-dir="res/raw" />
+			<source-file src="src/android/sample/res/raw/budots.mp3" target-dir="res/raw" />
 			
 			<source-file src="src/android/camerarecorder/capture/EGLBase.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/capture" />
 			<source-file src="src/android/camerarecorder/capture/EglSurface.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/capture" />

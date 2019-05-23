@@ -3,4 +3,7 @@
     <string name="app_record">Record Video</string>
     <string name="activity_name">Activity Name</string>
     <string name="launcher_name">Activity Name</string>
+	
+	<string name="video">VIDEO</string>
+    <string name="slide_show">SLIDE SHOW</string>
 </resources>
