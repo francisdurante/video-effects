@@ -82,9 +82,6 @@
 			<source-file src="src/android/sample/res/mipmap-hdpi/ic_launcher.png" target-dir="res/xml/mipmap-hdpi" />
 			<source-file src="src/android/sample/res/mipmap-hdpi/ic_launcher_round.png" target-dir="res/mipmap-hdpi" />
 			
-			<source-file src="src/android/sample/res/mipmap-mdpi/ic_launcher.png" target-dir="res/mipmap-mdpi" />
-			<source-file src="src/android/sample/res/mipmap-mdpi/ic_launcher_round.png" target-dir="res/mipmap-mdpi" />
-			
 			<source-file src="src/android/sample/res/mipmap-xhdpi/ic_launcher.png" target-dir="res/mipmap-xhdpi" />
 			<source-file src="src/android/sample/res/mipmap-xhdpi/ic_launcher_round.png" target-dir="res/mipmap-xhdpi" />
 			
