@@ -47,8 +47,11 @@
 			<source-file src="src/android/sample/VideoFragment.java" target-dir="src/video/effects/android/videoeffects/sample" />
 			<source-file src="src/android/sample/AudioTrimmerActivity.java" target-dir="src/video/effects/android/videoeffects/sample" />
 			
+			<config-file target="res/values/strings.xml" parent="/*">
+				<string name="video">VIDEO</string>
+				<string name="slide_show">SLIDE SHOW</string>
+			</config-file>
 			
-			<source-file src="src/android/sample/res/values/strings.xml" target-dir="res/values" />
 			<source-file src="src/android/sample/res/values/colors.xml" target-dir="res/values" />
 			<source-file src="src/android/sample/res/values/styles.xml" target-dir="res/values" />
 			
