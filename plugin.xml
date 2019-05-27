@@ -50,6 +50,7 @@
 			<config-file target="res/values/strings.xml" parent="/*">
 				<string name="video">VIDEO</string>
 				<string name="slide_show">SLIDE SHOW</string>
+				<string name="app_record">Record Video</string>
 			</config-file>
 			
 			<source-file src="src/android/sample/res/values/colors.xml" target-dir="res/values" />
