@@ -22,7 +22,7 @@ public class VideoEffects extends CordovaPlugin {
       this.callbackContext = callbackContext;
         if (action.equals("showCamera")) {
           String path = "";
-          path = args.getString(0);
+          path = args.getString(0) == null ? "" : args.getString(0);
           this.coolMethod(path);
           return true;
         }

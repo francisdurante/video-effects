@@ -100,33 +100,33 @@ public class BaseCameraActivity extends AppCompatActivity {
     initialLoadResources();
     recordBtn = findViewById(fakeR.getId("id","btn_record"));
     recordBtn.setOnClickListener(v -> {
-      mediaPlayer = MediaPlayer.create(this,Uri.parse(this.musicPath));
-      mp3Duration = mediaPlayer.getDuration();
-      if (recordBtn.getTag().equals(getString(fakeR.getId("string","app_record")))) {
-        new GlBitmapOverlaySample(BitmapFactory.decodeResource(this.getResources(), fakeR.getId("mipmap", "ic_launcher_round")));
-        filepath = getVideoFilePath();
-        outFile = myOneWorldMyStoryaVideosPath();
-        cameraRecorder.start(filepath);
-        cameraRecorder.changeAutoFocus();
-        recordBtn.setTag("Stop");
-        recordBtn.setImageResource(fakeR.getId("drawable","ic_recording"));
-        this.musicPath = musicPath;
-        mediaPlayer.start();
-        countDownTimer = new CountDownTimer(mp3Duration,1000) {
-          @Override
-          public void onTick(long millisUntilFinished) {}
-          @Override
-          public void onFinish() {
-            cameraRecorder.stop();
-            mediaPlayer.stop();
-            stopRecording();
-          }
-        }.start();
+      File file = new File(this.musicPath);
+      if(file.exists()) {
+        mediaPlayer = MediaPlayer.create(this, Uri.parse(this.musicPath));
+        mp3Duration = mediaPlayer.getDuration();
+        if (recordBtn.getTag().equals(getString(fakeR.getId("string", "app_record")))) {
+          startRecordingMethod();
+          this.musicPath = musicPath;
+          mediaPlayer.start();
+          countDownTimer = new CountDownTimer(mp3Duration, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+            }
+            @Override
+            public void onFinish() {
+              stopRecordingMethods();
+            }
+          }.start();
 
-      } else {
-        cameraRecorder.stop();
-        mediaPlayer.stop();
-        stopRecording();
+        } else {
+          stopRecordingMethods();
+        }
+      }else{
+        if (recordBtn.getTag().equals(getString(fakeR.getId("string", "app_record")))) {
+          startRecordingMethod();
+        } else {
+          stopRecordingMethods();
+        }
       }
 
     });
@@ -435,18 +435,21 @@ public class BaseCameraActivity extends AppCompatActivity {
 
               @Override
               public void onFailure(String message) {
-                dialog.dismiss();
+                if(!dialog.isShowing())
+                  dialog.dismiss();
                 Toast.makeText(context,message,Toast.LENGTH_LONG).show();
               }
 
               @Override
               public void onSuccess(String message) {
-                dialog.dismiss();
+                if(!dialog.isShowing())
+                  dialog.dismiss();
               }
 
               @Override
               public void onFinish() {
-                dialog.dismiss();
+                if(!dialog.isShowing())
+                  dialog.dismiss();
                 VideoEffects.callbackContext.success(outFile);
                 deleteUnusedVideo();
               }
@@ -473,8 +476,10 @@ public class BaseCameraActivity extends AppCompatActivity {
     if(null != countDownTimer){
       countDownTimer.cancel();
     }
-    if(!"".equals(this.musicPath)) {
-      addMusic(filepath, this.musicPath, outFile, this);
+    if(null != this.musicPath) {
+      if(!"".equals(this.musicPath)) {
+        addMusic(filepath, this.musicPath, outFile, this);
+      }
     }
     else {
       exportMp4ToGallery(this, filepath);
@@ -554,6 +559,17 @@ public class BaseCameraActivity extends AppCompatActivity {
   public void initialLoadResources(){
     exportInitialDrawableToLocalAndroid(fakeR.getId(this,"raw","budots"),"sample_name","budots.mp3");
   }
-
-
+  public void stopRecordingMethods(){
+    cameraRecorder.stop();
+    if(null != mediaPlayer)mediaPlayer.stop();
+    stopRecording();
+  }
+  public void startRecordingMethod(){
+    filepath = getVideoFilePath();
+    outFile = myOneWorldMyStoryaVideosPath();
+    cameraRecorder.start(filepath);
+    cameraRecorder.changeAutoFocus();
+    recordBtn.setTag("Stop");
+    recordBtn.setImageResource(fakeR.getId("drawable", "ic_recording"));
+  }
 }

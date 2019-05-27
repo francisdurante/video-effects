@@ -15,7 +15,7 @@
 		<framework src="com.android.support:design:28.0.0" />
 		<framework src="src/android/plugin.gradle" custom="true" type="gradleReference"/>
 		<config-file parent="/*" target="res/xml/config.xml">
-			<feature name="callPlugin"><param name="android-package" value="video.effects.android.videoeffects.VideoEffects" /></feature>
+			<feature name="videoAndImagePicker"><param name="android-package" value="video.effects.android.videoeffects.VideoEffects" /></feature>
 		</config-file>
 			<config-file parent="/manifest" target="AndroidManifest.xml">
 				<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -28,6 +28,7 @@
 			  <activity android:label="@string/activity_name" android:launchMode="singleTop" android:name="video.effects.android.videoeffects.sample.SquareActivity" android:theme="@style/Theme.AppCompat" android:windowSoftInputMode="adjustResize"/>
 			  <activity android:label="@string/activity_name" android:launchMode="singleTop" android:name="video.effects.android.videoeffects.sample.LandscapeActivity" android:theme="@style/Theme.AppCompat" android:windowSoftInputMode="adjustResize"/>
 			  <activity android:label="@string/activity_name" android:launchMode="singleTop" android:name="video.effects.android.videoeffects.sample.BaseCameraActivity" android:theme="@style/Theme.AppCompat" android:windowSoftInputMode="adjustResize"/>
+			  <activity android:label="@string/activity_name" android:launchMode="singleTop" android:name="video.effects.android.videoeffects.sample.AudioTrimmerActivity" android:label="@string/activity_name" android:launchMode="singleTop" android:theme="@style/Theme.AppCompat" android:windowSoftInputMode="adjustResize"/>
 			</config-file>
 			
 			<source-file src="src/android/FakeR.java" target-dir="src/video/effects/android/videoeffects" />
@@ -44,6 +45,7 @@
 			<source-file src="src/android/sample/SquareActivity.java" target-dir="src/video/effects/android/videoeffects/sample" />
 			<source-file src="src/android/sample/SlideShowFragment.java" target-dir="src/video/effects/android/videoeffects/sample" />
 			<source-file src="src/android/sample/VideoFragment.java" target-dir="src/video/effects/android/videoeffects/sample" />
+			<source-file src="src/android/sample/AudioTrimmerActivity.java" target-dir="src/video/effects/android/videoeffects/sample" />
 			
 			
 			<source-file src="src/android/sample/res/values/strings.xml" target-dir="res/values" />
@@ -71,6 +73,7 @@
 			<source-file src="src/android/sample/res/layout/activity_square.xml" target-dir="res/layout" />
 			<source-file src="src/android/sample/res/layout/activity_slideshow.xml" target-dir="res/layout" />
 			<source-file src="src/android/sample/res/layout/activity_video.xml" target-dir="res/layout" />
+			<source-file src="src/android/sample/res/layout/activity_audio_trimmer.xml" target-dir="res/layout" />
 			
 			<source-file src="src/android/sample/res/mipmap-anydpi-v26/ic_launcher.xml" target-dir="res/xml/mipmap-anydpi-v26" />
 			<source-file src="src/android/sample/res/mipmap-hdpi/ic_launcher.png" target-dir="res/xml/mipmap-hdpi" />

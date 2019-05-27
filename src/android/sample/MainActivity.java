@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 		    fakeR = new FakeR(this);
 		    this.images = new ArrayList<>();
 		    imagesPath = new ArrayList<String>();
-        setContentView(fakeR.getId("layout","activity_main"));
+			setContentView(fakeR.getId("layout","activity_main"));
 //		    if(checkPermission() && null != getIntent().getExtras().getString("MUSIC_PATH")) {
 //          musicPath = getIntent().getExtras().getString("MUSIC_PATH");
 //          PortrateActivity.startActivity(MainActivity.this, musicPath);
