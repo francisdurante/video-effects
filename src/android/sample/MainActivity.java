@@ -84,9 +84,11 @@ public class MainActivity extends AppCompatActivity {
         switch(menuItem.getTitle().toString()){
           case "VIDEO":
             loadFragment(new VideoFragment(this,musicPath));
+            finish();
             break;
           case "SLIDE SHOW":
             loadFragment(new SlideShowFragment(this));
+            finish();
             break;
         }
         return true;

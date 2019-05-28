@@ -572,4 +572,10 @@ public class BaseCameraActivity extends AppCompatActivity {
     recordBtn.setTag("Stop");
     recordBtn.setImageResource(fakeR.getId("drawable", "ic_recording"));
   }
+
+  @Override
+  public void onBackPressed() {
+    super.onBackPressed();
+    startActivity(new Intent(this,MainActivity.class));
+  }
 }
