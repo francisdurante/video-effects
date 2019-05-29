@@ -84,11 +84,9 @@ public class MainActivity extends AppCompatActivity {
         switch(menuItem.getTitle().toString()){
           case "VIDEO":
             loadFragment(new VideoFragment(this,musicPath));
-            finish();
             break;
           case "SLIDE SHOW":
             loadFragment(new SlideShowFragment(this));
-            finish();
             break;
         }
         return true;
@@ -100,7 +98,13 @@ public class MainActivity extends AppCompatActivity {
         checkPermission();
     }
 
-    private boolean checkPermission() {
+  @Override
+  protected void onPause() {
+    super.onPause();
+    finish();
+  }
+
+  private boolean checkPermission() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
         }
