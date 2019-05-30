@@ -37,11 +37,10 @@ public class MainActivity extends AppCompatActivity {
 		    this.images = new ArrayList<>();
 		    imagesPath = new ArrayList<String>();
 			  setContentView(fakeR.getId("layout","activity_main"));
-		    if(checkPermission() && null != getIntent().getExtras().getString("MUSIC_PATH")) {
-			  musicPath = getIntent().getExtras().getString("MUSIC_PATH");
-			  PortrateActivity.startActivity(MainActivity.this, musicPath);
-			  finish();
-			}
+        if(checkPermission() && null != getIntent().getExtras().getString("MUSIC_PATH")) {
+          musicPath = getIntent().getExtras().getString("MUSIC_PATH");
+          initBottomNav();
+        }
 //          ImagePicker.create(this) // Activity or Fragment
 //            .showCamera(false)
 //            .start();
@@ -74,12 +73,11 @@ public class MainActivity extends AppCompatActivity {
 //            SquareActivity.startActivity(MainActivity.this);
 //          });
 //        }
-      initBottomNav();
     }
 
-  public void initBottomNav(){
-    BottomNavigationView navigation = new BottomNavigationView(this);
-    navigation = findViewById(fakeR.getId("id","navigation"));
+  public void initBottomNav(){;
+
+    BottomNavigationView navigation = findViewById(fakeR.getId("id","navigation"));
     loadFragment(new VideoFragment(this,musicPath));
       navigation.setOnNavigationItemSelectedListener(menuItem -> {
         switch(menuItem.getTitle().toString()){
