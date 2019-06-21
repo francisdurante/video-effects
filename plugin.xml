@@ -80,19 +80,7 @@
 			<source-file src="src/android/sample/res/layout/activity_audio_trimmer.xml" target-dir="res/layout" />
 			
 			<source-file src="src/android/sample/res/mipmap-anydpi-v26/ic_launcher.xml" target-dir="res/xml/mipmap-anydpi-v26" />
-			<source-file src="src/android/sample/res/mipmap-hdpi/ic_launcher.png" target-dir="res/xml/mipmap-hdpi" />
-			<source-file src="src/android/sample/res/mipmap-hdpi/ic_launcher_round.png" target-dir="res/mipmap-hdpi" />
 			
-			<source-file src="src/android/sample/res/mipmap-xhdpi/ic_launcher.png" target-dir="res/mipmap-xhdpi" />
-			<source-file src="src/android/sample/res/mipmap-xhdpi/ic_launcher_round.png" target-dir="res/mipmap-xhdpi" />
-			
-			
-			<source-file src="src/android/sample/res/mipmap-xxhdpi/ic_launcher.png" target-dir="res/mipmap-xxhdpi" />
-			<source-file src="src/android/sample/res/mipmap-xxhdpi/ic_launcher_round.png" target-dir="res/mipmap-xxhdpi" />
-			
-			
-			<source-file src="src/android/sample/res/mipmap-xxxhdpi/ic_launcher.png" target-dir="res/mipmap-xxxhdpi" />
-			<source-file src="src/android/sample/res/mipmap-xxxhdpi/ic_launcher_round.png" target-dir="res/mipmap-xxxhdpi" />
 			
 			<source-file src="src/android/sample/res/raw/test_only.wav" target-dir="res/raw" />
 			<source-file src="src/android/sample/res/raw/budots.mp3" target-dir="res/raw" />
