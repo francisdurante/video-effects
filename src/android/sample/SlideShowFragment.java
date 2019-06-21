@@ -37,10 +37,13 @@ public class SlideShowFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View v = inflater.inflate(new FakeR(context).getId("layout","activity_slideshow"), container, false);
-    LinearLayout linearLayout = v.findViewById(new FakeR(context).getId("id","linear"));
-    linearLayout.setOnClickListener(v1 -> ImagePicker.create(fragment)
+//    LinearLayout linearLayout = v.findViewById(new FakeR(context).getId("id","linear"));
+//    linearLayout.setOnClickListener(v1 -> ImagePicker.create(fragment)
+//      .showCamera(false)// Activity or Fragment
+//      .start());
+	ImagePicker.create(fragment)
       .showCamera(false)// Activity or Fragment
-      .start());
+      .start();
     return v;
   }
 

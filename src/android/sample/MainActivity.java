@@ -82,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
       navigation.setOnNavigationItemSelectedListener(menuItem -> {
         switch(menuItem.getTitle().toString()){
           case "VIDEO":
-            loadFragment(new VideoFragment(this,musicPath));
+			Toast.makeText(MainActivity.this, "Click again", Toast.LENGTH_SHORT).show();
+           // loadFragment(new VideoFragment(this,musicPath));
             break;
           case "SLIDE SHOW":
             loadFragment(new SlideShowFragment(this));
@@ -127,9 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                   String musicPath = "";
                   if(checkPermission() && null != getIntent().getExtras().getString("MUSIC_PATH")) {
-                    musicPath = getIntent().getExtras().getString("MUSIC_PATH");
-                    PortrateActivity.startActivity(MainActivity.this, musicPath);
-                    finish();
+                   Toast.makeText(MainActivity.this, "Click again", Toast.LENGTH_SHORT).show();
                   }
                 } else {
                     Toast.makeText(MainActivity.this, "[WARN] camera permission is not grunted.", Toast.LENGTH_SHORT).show();
