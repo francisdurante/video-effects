@@ -41,38 +41,6 @@ public class MainActivity extends AppCompatActivity {
           musicPath = getIntent().getExtras().getString("MUSIC_PATH");
           initBottomNav();
         }
-//          ImagePicker.create(this) // Activity or Fragment
-//            .showCamera(false)
-//            .start();
-//          ImagePicker.create(this)
-//            .returnMode(ReturnMode.ALL) // set whether pick and / or camera action should return immediate result or not.
-//            .folderMode(true) // folder mode (false by default)
-//            .toolbarFolderTitle("Folder") // folder selection title
-//            .toolbarImageTitle("Tap to select") // image selection title
-//            .toolbarArrowColor(Color.BLACK) // Toolbar 'up' arrow color
-//            .includeVideo(true) // Show video on image picker
-//            .single() // single mode
-//            .multi() // multi mode (default mode)
-//            .limit(10) // max images can be selected (99 by default)
-//            .showCamera(true) // show camera or not (true by default)
-//            .imageDirectory("Camera") // directory name for captured image  ("Camera" folder by default)
-//            .origin(images) // original selected images, used in multi mode
-//            .exclude(images) // exclude anything that in image.getPath()
-//            .theme(fakeR.getId("style","AppTheme")) // must inherit ef_BaseTheme. please refer to sample
-//            .enableLog(false) // disabling log
-//            .start(); // start image picker activity with request code
-//        }
-//        }else {
-//          setContentView(fakeR.getId("layout", "activity_main"));
-//          findViewById(fakeR.getId("id", "portrate")).setOnClickListener(v -> {
-//          });
-//          findViewById(fakeR.getId("id", "landscape")).setOnClickListener(v -> {
-//            LandscapeActivity.startActivity(MainActivity.this);
-//          });
-//          findViewById(fakeR.getId("id", "square")).setOnClickListener(v -> {
-//            SquareActivity.startActivity(MainActivity.this);
-//          });
-//        }
     }
 
   public void initBottomNav(){;
@@ -82,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
       navigation.setOnNavigationItemSelectedListener(menuItem -> {
         switch(menuItem.getTitle().toString()){
           case "VIDEO":
-			Toast.makeText(MainActivity.this, "Click again", Toast.LENGTH_SHORT).show();
-           // loadFragment(new VideoFragment(this,musicPath));
+            loadFragment(new VideoFragment(this,musicPath));
             break;
           case "SLIDE SHOW":
             loadFragment(new SlideShowFragment(this));
@@ -92,13 +59,20 @@ public class MainActivity extends AppCompatActivity {
         return true;
       });
   }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        checkPermission();
-    }
 
   @Override
+  protected void onResume() {
+      super.onResume();
+      checkPermission();
+  }
+
+  @Override
+  public void onBackPressed() {
+      finish();
+      super.onBackPressed();
+  }
+
+    @Override
   protected void onPause() {
     super.onPause();
   }
@@ -128,10 +102,10 @@ public class MainActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                   String musicPath = "";
                   if(checkPermission() && null != getIntent().getExtras().getString("MUSIC_PATH")) {
-                   Toast.makeText(MainActivity.this, "Click again", Toast.LENGTH_SHORT).show();
+                    finish();
                   }
                 } else {
-                    Toast.makeText(MainActivity.this, "[WARN] camera permission is not grunted.", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainActivity.this, "[WARN] camera permission is not grunted.", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

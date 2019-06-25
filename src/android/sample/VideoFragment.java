@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.esafirm.imagepicker.features.ImagePicker;
 
@@ -33,7 +34,8 @@ public class VideoFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View v = inflater.inflate(new FakeR(context).getId("layout", "activity_video"), container, false);
     LinearLayout linearLayout = v.findViewById(new FakeR(context).getId("id", "video_fragment"));
-    linearLayout.setOnClickListener(v1 -> PortrateActivity.startActivity((Activity) context, musicPath));
+    linearLayout.setOnClickListener(v1 -> Toast.makeText(getContext(),"Under Maintenance",Toast.LENGTH_LONG).show());
+	//
     return v;
   }
 }

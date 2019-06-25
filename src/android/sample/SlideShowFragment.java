@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -41,8 +42,11 @@ public class SlideShowFragment extends Fragment {
 //    linearLayout.setOnClickListener(v1 -> ImagePicker.create(fragment)
 //      .showCamera(false)// Activity or Fragment
 //      .start());
-	ImagePicker.create(fragment)
-      .showCamera(false)// Activity or Fragment
+	    ImagePicker.create(fragment)
+        .showCamera(false)// Activity or Fragment
+        .folderMode(true)
+        .toolbarFolderTitle("Folder Mode") // folder selection title
+        .toolbarImageTitle("Tap to select") // image selection title
       .start();
     return v;
   }
@@ -60,5 +64,11 @@ public class SlideShowFragment extends Fragment {
       getActivity().finish();
     }
     super.onActivityResult(requestCode, resultCode, data);
+  }
+
+  @Override
+  public void onPause() {
+    getActivity().finish();
+    super.onPause();
   }
 }
