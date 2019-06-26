@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
   @Override
   public void onBackPressed() {
-      finish();
+      VideoEffects.callbackContext.error("userBack");
       super.onBackPressed();
   }
 
