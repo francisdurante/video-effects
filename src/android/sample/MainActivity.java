@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
   public void initBottomNav(){;
 
     BottomNavigationView navigation = findViewById(fakeR.getId("id","navigation"));
-    loadFragment(new VideoFragment(this,musicPath));
+    loadFragment(new SlideShowFragment(this));
       navigation.setOnNavigationItemSelectedListener(menuItem -> {
         switch(menuItem.getTitle().toString()){
           case "VIDEO":

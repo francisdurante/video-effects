@@ -44,8 +44,6 @@ public class SlideShowFragment extends Fragment {
 //      .start());
 	    ImagePicker.create(fragment)
         .showCamera(false)// Activity or Fragment
-        .folderMode(true)
-        .toolbarFolderTitle("Folder Mode") // folder selection title
         .toolbarImageTitle("Tap to select") // image selection title
       .start();
     return v;
