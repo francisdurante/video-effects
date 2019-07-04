@@ -66,9 +66,9 @@ public class SlideShowFragment extends Fragment {
     super.onActivityResult(requestCode, resultCode, data);
   }
 
-  @Override
-  public void onPause() {
-    getActivity().finish();
-    super.onPause();
-  }
+ // @Override
+ // public void onPause() {
+ //   getActivity().finish();
+ //   super.onPause();
+ // }
 }
