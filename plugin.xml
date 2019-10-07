@@ -81,10 +81,6 @@
 			
 			<source-file src="src/android/sample/res/mipmap-anydpi-v26/ic_launcher.xml" target-dir="res/xml/mipmap-anydpi-v26" />
 			
-			
-			<source-file src="src/android/sample/res/raw/test_only.wav" target-dir="res/raw" />
-			<source-file src="src/android/sample/res/raw/budots.mp3" target-dir="res/raw" />
-			
 			<source-file src="src/android/camerarecorder/capture/EGLBase.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/capture" />
 			<source-file src="src/android/camerarecorder/capture/EglSurface.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/capture" />
 			<source-file src="src/android/camerarecorder/capture/EncodeRenderHandler.java" target-dir="src/video/effects/android/videoeffects/camerarecorder/capture" />
