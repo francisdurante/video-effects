@@ -5,7 +5,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.opengl.GLException;
@@ -14,17 +13,13 @@ import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.RequiresApi;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -34,11 +29,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.github.hiteshsondhi88.libffmpeg.ExecuteBinaryResponseHandler;
-import com.github.hiteshsondhi88.libffmpeg.FFmpeg;
-import com.github.hiteshsondhi88.libffmpeg.LoadBinaryResponseHandler;
-import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegCommandAlreadyRunningException;
-import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegNotSupportedException;
+//import com.github.hiteshsondhi88.libffmpeg.ExecuteBinaryResponseHandler;
+//import com.github.hiteshsondhi88.libffmpeg.FFmpeg;
+//import com.github.hiteshsondhi88.libffmpeg.LoadBinaryResponseHandler;
+//import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegCommandAlreadyRunningException;
+//import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegNotSupportedException;
 
 import video.effects.android.videoeffects.VideoEffects;
 import video.effects.android.videoeffects.camerarecorder.CameraRecordListener;
@@ -46,7 +41,6 @@ import video.effects.android.videoeffects.camerarecorder.CameraRecorder;
 import video.effects.android.videoeffects.camerarecorder.CameraRecorderBuilder;
 import video.effects.android.videoeffects.camerarecorder.LensFacing;
 import video.effects.android.videoeffects.sample.widget.Filters;
-import video.effects.android.videoeffects.sample.widget.GlBitmapOverlaySample;
 import video.effects.android.videoeffects.sample.widget.SampleGLView;
 
 import java.io.File;
@@ -56,7 +50,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.IntBuffer;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.microedition.khronos.egl.EGL10;
@@ -189,7 +182,7 @@ public class BaseCameraActivity extends AppCompatActivity {
   @Override
   protected void onResume() {
     super.onResume();
-    setUpCamera();
+//    setUpCamera();
   }
 
   @Override
@@ -229,51 +222,51 @@ public class BaseCameraActivity extends AppCompatActivity {
     });
   }
 
-  private void setUpCamera() {
-    setUpCameraView();
-
-    cameraRecorder = new CameraRecorderBuilder(this, sampleGLView)
-      //.recordNoFilter(true)
-      .cameraRecordListener(new CameraRecordListener() {
-        @Override
-        public void onGetFlashSupport(boolean flashSupport) {
-          runOnUiThread(() -> {
-            findViewById(fakeR.getId("id","btn_flash")).setEnabled(flashSupport);
-          });
-        }
-
-        @Override
-        public void onRecordComplete() {
-          exportMp4ToGallery(getApplicationContext(), filepath);
-        }
-
-        @Override
-        public void onRecordStart() {
-
-        }
-
-        @Override
-        public void onError(Exception exception) {
-          Log.e("CameraRecorder", exception.toString());
-        }
-
-        @Override
-        public void onCameraThreadFinish() {
-          if (toggleClick) {
-            runOnUiThread(() -> {
-              setUpCamera();
-            });
-          }
-          toggleClick = false;
-        }
-      })
-      .videoSize(videoWidth, videoHeight)
-      .cameraSize(480, 360)
-      .lensFacing(lensFacing)
-      .build();
-
-
-  }
+//  private void setUpCamera() {
+//    setUpCameraView();
+//
+//    cameraRecorder = new CameraRecorderBuilder(this, sampleGLView)
+//      //.recordNoFilter(true)
+//      .cameraRecordListener(new CameraRecordListener() {
+//        @Override
+//        public void onGetFlashSupport(boolean flashSupport) {
+//          runOnUiThread(() -> {
+//            findViewById(fakeR.getId("id","btn_flash")).setEnabled(flashSupport);
+//          });
+//        }
+//
+//        @Override
+//        public void onRecordComplete() {
+//          exportMp4ToGallery(getApplicationContext(), filepath);
+//        }
+//
+//        @Override
+//        public void onRecordStart() {
+//
+//        }
+//
+//        @Override
+//        public void onError(Exception exception) {
+//          Log.e("CameraRecorder", exception.toString());
+//        }
+//
+//        @Override
+//        public void onCameraThreadFinish() {
+//          if (toggleClick) {
+//            runOnUiThread(() -> {
+//              setUpCamera();
+//            });
+//          }
+//          toggleClick = false;
+//        }
+//      })
+//      .videoSize(videoWidth, videoHeight)
+//      .cameraSize(480, 360)
+//      .lensFacing(lensFacing)
+//      .build();
+//
+//
+//  }
 
   private void changeFilter(Filters filters) {
     cameraRecorder.setFilter(Filters.getFilterInstance(filters, getApplicationContext()));
@@ -397,80 +390,81 @@ public class BaseCameraActivity extends AppCompatActivity {
   public boolean addMusic(String videoInput, String audioInput, String output, Context context) {
     String[] command = new String[]  {"-i", audioInput, "-i", videoInput, "-acodec", "copy", "-shortest",
       "-vcodec", "copy", output };
-    boolean exeCmdStatus = executeCMD(command,context);
-    return exeCmdStatus;
-  }
-
-  private boolean executeCMD(String[] cmd,Context context) {
-    FFmpeg ffmpeg = FFmpeg.getInstance(this);
-
-    ProgressDialog dialog = ProgressDialog.show(context, "",
-      "Loading. Please wait...", true);
-    try {
-      ffmpeg.loadBinary(new LoadBinaryResponseHandler() {
-        @Override
-        public void onStart() {
-        }
-
-        @Override
-        public void onFailure() {
-
-        }
-
-        @Override
-        public void onSuccess() {
-          try {
-            // to execute "ffmpeg -version" command you just need to pass "-version"
-            ffmpeg.execute(cmd, new ExecuteBinaryResponseHandler() {
-
-              @Override
-              public void onStart() {
-
-              }
-
-              @Override
-              public void onProgress(String message) {
-
-              }
-
-              @Override
-              public void onFailure(String message) {
-                if(!dialog.isShowing())
-                  dialog.dismiss();
-                Toast.makeText(context,message,Toast.LENGTH_LONG).show();
-              }
-
-              @Override
-              public void onSuccess(String message) {
-                if(!dialog.isShowing())
-                  dialog.dismiss();
-              }
-
-              @Override
-              public void onFinish() {
-                if(!dialog.isShowing())
-                  dialog.dismiss();
-                VideoEffects.callbackContext.success(outFile);
-                deleteUnusedVideo();
-              }
-            });
-          } catch (FFmpegCommandAlreadyRunningException e) {
-
-            Toast.makeText(context,e.getMessage(),Toast.LENGTH_LONG).show();
-            dialog.dismiss();
-          }
-        }
-
-        @Override
-        public void onFinish() {
-        }
-      });
-    } catch (FFmpegNotSupportedException e) {
-      Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
-    }
-
+//    boolean exeCmdStatus = executeCMD(command,context);
+//    return exeCmdStatus;
     return true;
   }
+
+//  private boolean executeCMD(String[] cmd,Context context) {
+//    FFmpeg ffmpeg = FFmpeg.getInstance(this);
+//
+//    ProgressDialog dialog = ProgressDialog.show(context, "",
+//      "Loading. Please wait...", true);
+//    try {
+//      ffmpeg.loadBinary(new LoadBinaryResponseHandler() {
+//        @Override
+//        public void onStart() {
+//        }
+//
+//        @Override
+//        public void onFailure() {
+//
+//        }
+//
+//        @Override
+//        public void onSuccess() {
+//          try {
+//            // to execute "ffmpeg -version" command you just need to pass "-version"
+//            ffmpeg.execute(cmd, new ExecuteBinaryResponseHandler() {
+//
+//              @Override
+//              public void onStart() {
+//
+//              }
+//
+//              @Override
+//              public void onProgress(String message) {
+//
+//              }
+//
+//              @Override
+//              public void onFailure(String message) {
+//                if(!dialog.isShowing())
+//                  dialog.dismiss();
+//                Toast.makeText(context,message,Toast.LENGTH_LONG).show();
+//              }
+//
+//              @Override
+//              public void onSuccess(String message) {
+//                if(!dialog.isShowing())
+//                  dialog.dismiss();
+//              }
+//
+//              @Override
+//              public void onFinish() {
+//                if(!dialog.isShowing())
+//                  dialog.dismiss();
+//                VideoEffects.callbackContext.success(outFile);
+//                deleteUnusedVideo();
+//              }
+//            });
+//          } catch (FFmpegCommandAlreadyRunningException e) {
+//
+//            Toast.makeText(context,e.getMessage(),Toast.LENGTH_LONG).show();
+//            dialog.dismiss();
+//          }
+//        }
+//
+//        @Override
+//        public void onFinish() {
+//        }
+//      });
+//    } catch (FFmpegNotSupportedException e) {
+//      Toast.makeText(this,e.getMessage(),Toast.LENGTH_LONG).show();
+//    }
+//
+//    return true;
+//  }
 
   public void stopRecording(){
     if(null != countDownTimer){
